@@ -1,6 +1,6 @@
 name: Lint
 
-on: [pull_request]
+on: pull_request
 
 jobs:
   eslint:
@@ -12,10 +12,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      run: npm ci --no-audit --prefer-offline
+      - run: rm -f .yarnclean
+      - run: npm ci --no-audit --prefer-offline
         env:
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
           HUSKY_SKIP_INSTALL: true
+      # Alternative: if you use npm instead of yarn
+      # - run: npm ci --no-audit --prefer-offline
       - uses: tinovyatkin/action-eslint@v1
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
