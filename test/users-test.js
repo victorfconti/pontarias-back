@@ -1,4 +1,8 @@
 const assert = require('assert');
-const { expect } = require('chai');
 
+describe('User', () => {
+    it('true', function () {
+        assert.equal(2, 3);
+    });
+});
 
