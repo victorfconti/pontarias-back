@@ -15,7 +15,6 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
-          ./node_modules/.bin/eslint --ignore-path .eslintignore .
           npm test
         env:
           CI: true
