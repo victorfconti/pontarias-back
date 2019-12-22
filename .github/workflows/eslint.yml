@@ -1,6 +1,6 @@
 name: Lint
 
-on: pull_request
+on: [pull_request]
 
 jobs:
   eslint:
@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: npm ci --no-audit --prefer-offline
-      env:
+      run: npm ci --no-audit --prefer-offline
+        env:
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD: true
           HUSKY_SKIP_INSTALL: true
       - uses: tinovyatkin/action-eslint@v1
