@@ -7,11 +7,12 @@
     "test": "./node_modules/mocha/bin/mocha"
   },
   "dependencies": {
-    "@types/mocha": "^5.2.7",
     "cookie-parser": "~1.4.4",
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "morgan": "~1.9.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^2.0.2",
     "nodemon": "^2.0.2",
     "pg": "^7.15.1",
     "pg-hstore": "^2.3.3",
@@ -19,8 +20,10 @@
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
+    "@types/mocha": "^5.2.7",
     "@types/express": "^4.17.2",
-    "@types/node": "^12.12.21",
+    "@types/node": "^13.1.0",
+    "@types/sequelize": "^4.28.8",
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "mocha": "^6.2.2"
