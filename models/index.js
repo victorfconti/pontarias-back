@@ -7,7 +7,6 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
-require('./user');
 
 let sequelize = new Sequelize(config.database, config.username, config.password, config);
 
@@ -29,5 +28,7 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+sequelize.sync().then(()=>{console.log('Creating database')});
 
 module.exports = db;
