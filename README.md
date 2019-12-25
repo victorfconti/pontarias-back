@@ -3,7 +3,7 @@
 [![Actions Status](https://github.com/victorfconti/pontarias-back/workflows/EsLint/badge.svg)](https://github.com/{owner}/{repo}/actions)
 [![dependencies Status](https://david-dm.org/victorfconti/pontarias-back/status.svg)](https://david-dm.org/victorfconti/pontarias-back)
 [![devDependencies Status](https://david-dm.org/victorfconti/pontarias-back/dev-status.svg)](https://david-dm.org/victorfconti/pontarias-back?type=dev)
-
+ [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](./LICENSE.txt)
 # Pontarias Back
 
 Backend do projeto de pontos eletrônicos, pontarias

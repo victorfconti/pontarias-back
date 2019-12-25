@@ -5,7 +5,7 @@
     "database": "pontarias_development",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   },
   "test": {
     "username": "pontarias",
@@ -13,7 +13,7 @@
     "database": "pontarias_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   },
   "production": {
     "username": "pontarias",
@@ -21,6 +21,6 @@
     "database": "pontarias_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   }
 }
