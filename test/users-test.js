@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe('User', () => {
     it('true', function () {
-        chai.request(app);
+        chai.request(app).get('/');
         assert.equal(3, 3);
     });
 });
