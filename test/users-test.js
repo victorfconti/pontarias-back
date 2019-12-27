@@ -9,7 +9,7 @@ describe('User', () => {
     it('true', function () {
         chai.request(app).get('/').end((err, res)=>{
             console.log("Res:" + res);
-            chai.expect(res).not.to.be.null;
+            chai.expect(res).not.to.be.equal(null);
         });
         assert.equal(3, 3);
     });
