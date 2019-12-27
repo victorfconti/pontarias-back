@@ -2,17 +2,15 @@
   "development": {
     "username": "pontarias",
     "password": "123",
-    "database": "pontarias_development",
+    "database": "pontarias_dev",
     "host": "127.0.0.1",
-    "dialect": "mysql",
+    "dialect": "postgres",
     "operatorsAliases": 0
   },
   "test": {
     "username": "pontarias",
     "password": "123",
-    "database": "pontarias_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
+    "dialect": "sqlite",
     "operatorsAliases": 0
   },
   "production": {
@@ -20,7 +18,7 @@
     "password": "123",
     "database": "pontarias_production",
     "host": "127.0.0.1",
-    "dialect": "mysql",
+    "dialect": "postgres",
     "operatorsAliases": 0
   }
 }

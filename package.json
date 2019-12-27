@@ -11,13 +11,12 @@
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "express-validator": "^6.3.0",
-    "mysql": "^2.17.1",
-    "mysql2": "^2.0.2",
     "nodemon": "^2.0.2",
     "pg": "^7.15.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1",
+    "sqlite": "^3.0.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {
