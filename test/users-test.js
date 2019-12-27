@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 describe('User', () => {
     it('true', function () {
-        chai.request(app).get('/');
+        chai.request(app).get('/').end((res)=>{chai.expect(res).to.be.null});
         assert.equal(3, 3);
     });
 });
