@@ -1,6 +1,6 @@
 const user = require('../models/index').User;
 const { validationResult } = require('express-validator');
-const logger = require('/config/logger');
+const logger = require('../config/logger');
 
 module.exports = {
     save(req, res){
