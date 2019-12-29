@@ -5,9 +5,9 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 const logger = require('../config/logger');
 const db = {};
+db.env = env;
 
-
-let sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
 db.User = sequelize.import(__dirname + '/user.js');
 
