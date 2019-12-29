@@ -39,4 +39,14 @@ describe('User', () => {
             chai.expect(err).to.be.null;
         });
     });
+    it('Double user error', function () {
+        chai.request(app).post('/users').send(generateValidUser()).end((err, res)=>{
+            chai.expect(res.status).to.be.equal(400);
+            chai.expect(err).to.be.null;
+        });
+        chai.request(app).post('/users').send(generateValidUser()).end((err, res)=>{
+            chai.expect(res.status).to.be.equal(400);
+            chai.expect(err).to.be.null;
+        });
+    });
 });
