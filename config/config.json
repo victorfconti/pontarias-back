@@ -11,7 +11,8 @@
     "username": "pontarias",
     "password": "123",
     "dialect": "sqlite",
-    "operatorsAliases": 0
+    "operatorsAliases": 0,
+    "logging": false
   },
   "production": {
     "username": "pontarias",

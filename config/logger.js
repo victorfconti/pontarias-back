@@ -2,6 +2,8 @@ const { createLogger, format, transports } = require('winston');
 const fs = require('fs');
 const path = require('path');
 
+console.error("env =" + process.env.NODE_ENV);
+
 const env = process.env.NODE_ENV || 'development';
 const logDir = 'log';
 
