@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 function generateValidUser(){
     return {
         firstName: 'Daffy',
-        lastName: 'Duff',
+        lastName: 'Duck',
         username: 'TheMage',
         password: 'm4g40D4P@rr4',
         email: 'a@a.com.br',
@@ -18,7 +18,7 @@ function generateValidUser(){
 function generateValidUserWrongNoNumberNeitherSpecialChar(){
     return {
         firstName: 'Daffy',
-        lastName: 'Duff',
+        lastName: 'Duck',
         username: 'TheMage',
         password: 'magaoDaPorra',
         email: 'a@a.com.br',
