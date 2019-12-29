@@ -30,13 +30,13 @@ describe('User', () => {
     it('Correct User', function () {
         chai.request(app).post('/users').send(generateValidUser()).end((err, res)=>{
             chai.expect(res.status).to.be.equal(201);
-            chai.expect(err).to.be.equal(null);
+            chai.expect(err).to.be.null;
         });
     });
     it('Wrong Password', function(){
         chai.request(app).post('/users').send(generateValidUserWrongNoNumberNeitherSpecialChar()).end((err, res)=>{
             chai.expect(res.status).to.be.equal(400);
-            chai.expect(err).to.be.equal(null);
+            chai.expect(err).to.be.null;
         });
     });
 });
