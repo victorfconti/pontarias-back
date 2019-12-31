@@ -1,4 +1,4 @@
-on: push
+on: [push, pull]
 name: Sonarcloud
 jobs:
   sonarCloudTrigger:
