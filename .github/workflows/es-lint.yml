@@ -1,6 +1,6 @@
 name: EsLint
 
-on: [push]
+on: [push, pull]
 
 jobs:
   eslint:
