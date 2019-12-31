@@ -46,6 +46,19 @@ describe('Config', function () {
         }
     });
     it('Ambient variable on database', ()=>{
-
+        cleanEnvironmentVariableAndConfCache('../models/index');
+        let model;
+        process.env['USERNAME'] = 'pontarias';
+        process.env['PASSWORD'] = '123';
+        process.env['DIALECT'] = 'sqlite';
+        try {
+            model = require('../models/index');
+        }finally {
+            chai.expect(model.env).be.equal('development');
+            process.env['USERNAME'];
+            process.env['PASSWORD'];
+            process.env['DIALECT'] ;
+            setEnvironmentVariableAndGeneratedTestCache('../models/index');
+        }
     })
 });
