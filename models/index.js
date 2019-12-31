@@ -2,10 +2,22 @@
 
 const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
 const logger = require('../config/logger');
 const db = {};
 db.env = env;
+let config;
+
+if(process.env.DATABASE && process.env.USERNAME && process.env.PASSWORD){
+  config = {
+    database: process.env.DATABASE,
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD
+  };
+  config.operatorsAliases = 0;
+  config.logging = process.env.LOGGING?process.env.LOGGING:false;
+}else{
+  config = require(__dirname + '/../config/config.json')[env];
+}
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
