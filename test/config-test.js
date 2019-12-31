@@ -45,4 +45,7 @@ describe('Config', function () {
             setEnvironmentVariableAndGeneratedTestCache('../models/index');
         }
     });
+    it('Ambient variable on database', ()=>{
+
+    })
 });
