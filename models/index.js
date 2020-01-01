@@ -27,7 +27,7 @@ if(process.env.DB_USERNAME && process.env.DB_PASSWORD){
   config = require(__dirname + '/../config/config.json')[env];
 }
 
-delete config['password'];
+console.error(config);
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
