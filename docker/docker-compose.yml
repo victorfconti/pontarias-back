@@ -25,8 +25,7 @@ services:
       - DB_USERNAME=pontarias
       - DB_PASSWORD=123
       - DB_DIALECT=postgres
-      - DB_PORT=2345
-      - DB_HOST=192.168.0.12
+      - DB_HOST=postgres
     ports:
       - "10281:3000"
     depends_on:
