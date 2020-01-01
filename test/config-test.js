@@ -48,55 +48,56 @@ describe('Config', function () {
     it('Environment variable on database', ()=>{
         cleanEnvironmentVariableAndConfCache('../models/index');
         let model;
-        process.env['USERNAME'] = 'pontarias';
-        process.env['PASSWORD'] = '123';
-        process.env['DIALECT'] = 'sqlite';
+        process.env['DB_USERNAME'] = 'pontarias';
+        process.env['DB_PASSWORD'] = '123';
+        process.env['DB_DIALECT'] = 'sqlite';
         try {
             model = require('../models/index').sequelize.options;
         }finally {
+            console.log(model);
             chai.expect(model.username).be.equal('pontarias');
             chai.expect(model.dialect).be.equal('sqlite');
             chai.expect(model.database).be.undefined;
 
-            delete process.env['USERNAME'];
-            delete process.env['PASSWORD'];
-            delete process.env['DIALECT'] ;
+            delete process.env['DB_USERNAME'];
+            delete process.env['DB_PASSWORD'];
+            delete process.env['DB_DIALECT'] ;
             setEnvironmentVariableAndGeneratedTestCache('../models/index');
         }
     });
     it('Environment variable on database with database', ()=>{
         cleanEnvironmentVariableAndConfCache('../models/index');
         let model;
-        process.env['USERNAME'] = 'pontarias';
-        process.env['PASSWORD'] = '123';
-        process.env['DIALECT'] = 'sqlite';
-        process.env['DATABASE'] = 'pontarias';
+        process.env['DB_USERNAME'] = 'pontarias';
+        process.env['DB_PASSWORD'] = '123';
+        process.env['DB_DIALECT'] = 'sqlite';
+        process.env['DB_DATABASE'] = 'pontarias';
         try {
             model = require('../models/index').sequelize.options;
         }finally {
             chai.expect(model.database).be.equal('pontarias');
-            delete process.env['USERNAME'];
-            delete process.env['PASSWORD'];
-            delete process.env['DIALECT'] ;
-            delete process.env['DATABASE'];
+            delete process.env['DB_USERNAME'];
+            delete process.env['DB_PASSWORD'];
+            delete process.env['DB_DIALECT'] ;
+            delete process.env['DB_DATABASE'];
             setEnvironmentVariableAndGeneratedTestCache('../models/index');
         }
     });
     it('Environment variable on database with logging', ()=>{
         cleanEnvironmentVariableAndConfCache('../models/index');
         let model;
-        process.env['USERNAME'] = 'pontarias';
-        process.env['PASSWORD'] = '123';
-        process.env['DIALECT'] = 'sqlite';
-        process.env['LOGGING'] = false;
+        process.env['DB_USERNAME'] = 'pontarias';
+        process.env['DB_PASSWORD'] = '123';
+        process.env['DB_DIALECT'] = 'sqlite';
+        process.env['DB_LOGGING'] = false;
         try {
             model = require('../models/index').sequelize.options;
         }finally {
             chai.expect(model.logging).be.equal('false');
-            delete process.env['USERNAME'];
-            delete process.env['PASSWORD'];
-            delete process.env['DIALECT'] ;
-            delete process.env['LOGGING'];
+            delete process.env['DB_USERNAME'];
+            delete process.env['DB_PASSWORD'];
+            delete process.env['DB_DIALECT'] ;
+            delete process.env['DB_LOGGING'];
 
             setEnvironmentVariableAndGeneratedTestCache('../models/index');
         }
@@ -104,38 +105,38 @@ describe('Config', function () {
     it('Environment variable on database with port', ()=>{
         cleanEnvironmentVariableAndConfCache('../models/index');
         let model;
-        process.env['USERNAME'] = 'pontarias';
-        process.env['PASSWORD'] = '123';
-        process.env['DIALECT'] = 'sqlite';
-        process.env['PORT'] = 5432;
+        process.env['DB_USERNAME'] = 'pontarias';
+        process.env['DB_PASSWORD'] = '123';
+        process.env['DB_DIALECT'] = 'sqlite';
+        process.env['DB_PORT'] = 5432;
         try {
             model = require('../models/index').sequelize.options;
         }finally {
             chai.expect(model.port).be.equal('5432');
-            delete process.env['USERNAME'];
-            delete process.env['PASSWORD'];
-            delete process.env['DIALECT'] ;
-            delete process.env['PORT'];
+            delete process.env['DB_USERNAME'];
+            delete process.env['DB_PASSWORD'];
+            delete process.env['DB_DIALECT'] ;
+            delete process.env['DB_PORT'];
 
             setEnvironmentVariableAndGeneratedTestCache('../models/index');
         }
     });
-    it('Environment variable on database with host', ()=>{
+    it('Environment variable on database with DB_HOST', ()=>{
         cleanEnvironmentVariableAndConfCache('../models/index');
         let model;
-        process.env['USERNAME'] = 'pontarias';
-        process.env['PASSWORD'] = '123';
-        process.env['DIALECT'] = 'sqlite';
-        process.env['HOST'] = 'localhost';
+        process.env['DB_USERNAME'] = 'pontarias';
+        process.env['DB_PASSWORD'] = '123';
+        process.env['DB_DIALECT'] = 'sqlite';
+        process.env['DB_HOST'] = 'localhost';
         try {
             model = require('../models/index').sequelize.config;
         }finally {
             console.log(model);
             chai.expect(model.host).be.equal('localhost');
-            delete process.env['USERNAME'];
-            delete process.env['PASSWORD'];
-            delete process.env['DIALECT'] ;
-            delete process.env['HOST'];
+            delete process.env['DB_USERNAME'];
+            delete process.env['DB_PASSWORD'];
+            delete process.env['DB_DIALECT'] ;
+            delete process.env['DB_HOST'];
 
             setEnvironmentVariableAndGeneratedTestCache('../models/index');
         }

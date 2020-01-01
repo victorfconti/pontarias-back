@@ -7,21 +7,21 @@ const db = {};
 db.env = env;
 let config;
 
-if(process.env.USERNAME && process.env.PASSWORD){
+if(process.env.DB_USERNAME && process.env.DB_PASSWORD){
   config = {
-    database: process.env.DATABASE,
-    username: process.env.USERNAME,
-    password: process.env.PASSWORD
+    database: process.env.DB_DATABASE,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD
   };
-  config.logging = process.env.DATABASE?process.env.DATABASE:false;
+  config.logging = process.env.DB_DATABASE?process.env.DB_DATABASE:false;
   config.operatorsAliases = 0;
-  config.dialect = process.env.DIALECT;
-  config.logging = process.env.LOGGING?process.env.LOGGING:false;
-  if(process.env.PORT){
-    config.port = process.env.PORT;
+  config.dialect = process.env.DB_DIALECT;
+  config.logging = process.env.DB_LOGGING?process.env.DB_LOGGING:false;
+  if(process.env.DB_PORT){
+    config.port = process.env.DB_PORT;
   }
-  if(process.env.HOST){
-    config.host = process.env.HOST;
+  if(process.env.DB_HOST){
+    config.host = process.env.DB_HOST;
   }
 }else{
   config = require(__dirname + '/../config/config.json')[env];

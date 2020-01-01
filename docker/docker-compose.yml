@@ -11,14 +11,15 @@ services:
     volumes:
       - "./data/postgres:/var/lib/postgresql/data"
     ports:
-      - "5432:5432"
+      - "2345:5432"
   backend:
     build: .
     environment:
-      - DATABASE=pontarias
-      - USERNAME=pontarias
-      - PASSWORD=123
-      - DIALECT=postgresql
+      - DB_DATABASE=pontarias
+      - DB_USERNAME=pontarias
+      - DB_PASSWORD=123
+      - DB_DIALECT=postgresql
+      - DB_PORT=
     ports:
       - "10281:3000"
     depends_on:
