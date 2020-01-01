@@ -1,8 +1,11 @@
-version: "3"
+version: "3.5"
 
 services:
-  database:
+  postgres:
+    container_name: postgres
     image: postgres:12-alpine
+    networks:
+      - pontarias
     environment:
       - POSTGRES_USER=pontarias
       - POSTGRES_DB=pontarias
@@ -12,17 +15,23 @@ services:
       - "./data/postgres:/var/lib/postgresql/data"
     ports:
       - "2345:5432"
-  backend:
+  pontarias_back:
     build: .
+    container_name: pontarias_back
+    networks:
+      - pontarias
     environment:
       - DB_DATABASE=pontarias
       - DB_USERNAME=pontarias
       - DB_PASSWORD=123
-      - DB_DIALECT=postgresql
+      - DB_DIALECT=postgres
       - DB_PORT=2345
-      - DB_HOST=database
+      - DB_HOST=192.168.0.12
     ports:
       - "10281:3000"
     depends_on:
-      - database
+      - postgres
 
+networks:
+  pontarias:
+    name: pontarias
