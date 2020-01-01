@@ -101,4 +101,42 @@ describe('Config', function () {
             setEnvironmentVariableAndGeneratedTestCache('../models/index');
         }
     });
+    it('Environment variable on database with port', ()=>{
+        cleanEnvironmentVariableAndConfCache('../models/index');
+        let model;
+        process.env['USERNAME'] = 'pontarias';
+        process.env['PASSWORD'] = '123';
+        process.env['DIALECT'] = 'sqlite';
+        process.env['PORT'] = 5432;
+        try {
+            model = require('../models/index').sequelize.options;
+        }finally {
+            chai.expect(model.port).be.equal('5432');
+            delete process.env['USERNAME'];
+            delete process.env['PASSWORD'];
+            delete process.env['DIALECT'] ;
+            delete process.env['PORT'];
+
+            setEnvironmentVariableAndGeneratedTestCache('../models/index');
+        }
+    });
+    it('Environment variable on database with host', ()=>{
+        cleanEnvironmentVariableAndConfCache('../models/index');
+        let model;
+        process.env['USERNAME'] = 'pontarias';
+        process.env['PASSWORD'] = '123';
+        process.env['DIALECT'] = 'sqlite';
+        process.env['HOST'] = 'localhost';
+        try {
+            model = require('../models/index').sequelize.options;
+        }finally {
+            chai.expect(model.host).be.equal('localhost');
+            delete process.env['USERNAME'];
+            delete process.env['PASSWORD'];
+            delete process.env['DIALECT'] ;
+            delete process.env['HOST'];
+
+            setEnvironmentVariableAndGeneratedTestCache('../models/index');
+        }
+    });
 });

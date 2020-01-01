@@ -17,6 +17,12 @@ if(process.env.USERNAME && process.env.PASSWORD){
   config.operatorsAliases = 0;
   config.dialect = process.env.DIALECT;
   config.logging = process.env.LOGGING?process.env.LOGGING:false;
+  if(process.env.PORT){
+    config.port = process.env.PORT;
+  }
+  if(process.env.HOST){
+    config.host = process.env.HOST;
+  }
 }else{
   config = require(__dirname + '/../config/config.json')[env];
 }
