@@ -128,8 +128,9 @@ describe('Config', function () {
         process.env['DIALECT'] = 'sqlite';
         process.env['HOST'] = 'localhost';
         try {
-            model = require('../models/index').sequelize.options;
+            model = require('../models/index').sequelize.config;
         }finally {
+            console.log(model);
             chai.expect(model.host).be.equal('localhost');
             delete process.env['USERNAME'];
             delete process.env['PASSWORD'];
