@@ -2,10 +2,10 @@ name: Sonarcloud
 on:
   push:
     branch:
-      - "master"
+      - master
   pull_request:
     branch:
-      - "*"
+      - '*'
 jobs:
   sonarCloudTrigger:
     name: SonarCloud Trigger
