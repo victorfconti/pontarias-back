@@ -3,10 +3,10 @@ name: Node CI
 on:
   push:
     branch:
-      - master
+      - "master"
   pull_request:
     branch:
-      - *
+      - "*"
 jobs:
   build:
     runs-on: ubuntu-latest

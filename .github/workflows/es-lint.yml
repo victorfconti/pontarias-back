@@ -3,10 +3,10 @@ name: EsLint
 on:
   push:
     branch:
-      - master
+      - "master"
   pull_request:
     branch:
-      - *
+      - "*"
 jobs:
   eslint:
     runs-on: ubuntu-latest
