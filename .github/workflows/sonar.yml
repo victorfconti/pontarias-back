@@ -2,7 +2,7 @@ name: Sonarcloud
 on:
   push:
     branch:
-      - master
+      - develop
 jobs:
   sonarCloudTrigger:
     name: SonarCloud Trigger
