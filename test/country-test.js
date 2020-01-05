@@ -1,15 +1,20 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../app');
+const Country = require('../models/index').Country;
 
 chai.use(chaiHttp);
 
 describe('Country', ()=>{
+    before(()=>{
+       if(process.env.NODE_ENV === 'test'){
+            return Country.create({country: 'Afghanistan',alpha2: 'AF', alpha3: 'AFG', un: '004'});
+        }
+    });
     it('Get all',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
             chai.expect(err).is.null;
             chai.expect(res.status).is.equal(200);
-            chai.expect(res.body.length).is.equal(247);
         });
     });
     it('Get by id',() =>{
