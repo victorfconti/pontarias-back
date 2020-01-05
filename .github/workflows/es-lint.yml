@@ -1,7 +1,10 @@
 name: EsLint
 
-on: [push, pull_request]
-
+on:
+  push:
+    - 'master'
+  pull_request:
+    - '*'
 jobs:
   eslint:
     runs-on: ubuntu-latest

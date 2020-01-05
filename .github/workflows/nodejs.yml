@@ -1,7 +1,10 @@
 name: Node CI
 
-on: [push, pull_request]
-
+on:
+  push:
+    - 'master'
+  pull_request:
+    - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
