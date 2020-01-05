@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require('path');
-require('./models/index');
+const models = require('./models/index');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const countryRouter= require('./routes/country');
 
 const app = express();
+
+app.models = models;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

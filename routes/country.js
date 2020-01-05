@@ -8,15 +8,15 @@ router.get('/', (req, res)=>{
     countryController.get(req, res);
 });
 
-router.get('/:id', [check('id').exists().isNumeric()], ((req, res) => {
+router.get('/:id', ((req, res) => {
     countryController.getWithId(req, res);
 }));
 
-router.get('/name/:name', [check('name').exists().isString()], (req, res) => {
+router.get('/name/:name', (req, res) => {
     countryController.getWithName(req, res);
 });
 
-router.get('/alpha2/:alpha2', [check('alpha2').exists().isString()], ((req, res) => {
+router.get('/alpha2/:alpha2', ((req, res) => {
     countryController.getWithAlpha2(req, res);
 }));
 
