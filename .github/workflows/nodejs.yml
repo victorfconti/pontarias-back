@@ -2,9 +2,11 @@ name: Node CI
 
 on:
   push:
-    - master
+    branch:
+      - master
   pull_request:
-    - *
+    branch:
+      - *
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -2,9 +2,11 @@ name: EsLint
 
 on:
   push:
-    - master
+    branch:
+      - master
   pull_request:
-    - *
+    branch:
+      - *
 jobs:
   eslint:
     runs-on: ubuntu-latest
