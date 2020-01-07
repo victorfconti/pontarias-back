@@ -1,7 +1,10 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const country = require('../controllers/country');
 const app = require('../app');
 const Country = require('../models/index').Country;
+const mockResponse = require('./utils').mockResponse;
+const sinon = require('sinon');
 
 chai.use(chaiHttp);
 
@@ -16,6 +19,18 @@ describe('Country', ()=>{
             chai.expect(err).is.null;
             chai.expect(res.status).is.equal(200);
         });
+    });
+    it('Get all with error',() =>{
+        const mResponse = new mockResponse();
+        country.userModel = '';
+        console.log(country.userModel);
+        sinon.stub(country, 'userModel').callsFake(function(){
+            console.log('hey macarena');
+        });
+        country.get(null, mResponse);
+        chai.expect(mResponse.statusCode).is.eq(500);
+        // chai.expect(res.status).is.equal(200);
+        country.toCrazyCrap.restore();
     });
     it('Get by id',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
@@ -34,13 +49,15 @@ describe('Country', ()=>{
             chai.expect(res.body).is.empty;
         });
     });
-    // it('Get by id constraint error',() =>{
-    //     chai.request(app).get('/countries/a').end((err, res)=>{
-    //         chai.expect(err).is.null;
-    //         chai.expect(res.status).is.equal(500);
-    //         chai.expect(res.body).is.empty;
-    //     });
-    // });
+    it('Get by id constraint error',() =>{
+        const mockCountry = Object.assign({}, country);
+        console.log(mockCountry.get); //.findAll();
+        // chai.request(app).get('/countries/a').end((err, res)=>{
+        //     chai.expect(err).is.null;
+        //     chai.expect(res.status).is.equal(500);
+        //     chai.expect(res.body).is.empty;
+        // });
+    });
     it('Get by country',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
             chai.request(app).get('/countries/name/' + res.body[0].country).end((errInner, resInner)=>{

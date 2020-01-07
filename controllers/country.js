@@ -5,11 +5,12 @@ const sequelize = require('sequelize');
 module.exports = {
 
     get(req, res){
+        console.log((userModel));
         userModel.findAll().then(countries =>{
             return res.json(countries)
         }).catch(err=>{
             logger.error(err);
-            res.status(500).json({})
+            return res.status(500).json({})
         });
     },
 
@@ -21,7 +22,7 @@ module.exports = {
             return res.json(country);
         }).catch(err=>{
             logger.error(err);
-            res.status(500).json({})
+            return res.status(500).json({})
         });
     },
 
@@ -43,7 +44,7 @@ module.exports = {
             return res.json(country);
         }).catch(err=>{
             logger.error(err);
-            res.status(500).json({})
+            return res.status(500).json({})
         });
     }
 };
