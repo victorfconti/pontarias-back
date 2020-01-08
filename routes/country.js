@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const countryController = new require('../controllers/country')();
-
+const CountryController = require('../controllers/country');
+const countryController = new CountryController();
 
 router.get('/', (req, res)=>{
     countryController.get(req, res);
