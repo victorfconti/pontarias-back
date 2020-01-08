@@ -9,24 +9,31 @@ const sinon = require('sinon');
 chai.use(chaiHttp);
 
 describe('Country', ()=>{
+
     before(()=>{
        if(process.env.NODE_ENV === 'test'){
             return Country.create({country: 'Afghanistan',alpha2: 'AF', alpha3: 'AFG', un: '004'});
         }
     });
+
     it('Get all',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
             chai.expect(err).is.null;
             chai.expect(res.status).is.equal(200);
         });
     });
+
+    // var Module = require('module');
+    // var originalRequire = Module.prototype.require;
+    // Module.prototype.require = function(){
+    //     //do your thing here
+    //     return originalRequire.apply(this, arguments);
+    // };
+
     it('Get all with error',() =>{
         const mResponse = new mockResponse();
-        country.userModel = '';
+        country.setUserModel('a');
         console.log(country.userModel);
-        sinon.stub(country, 'userModel').callsFake(function(){
-            console.log('hey macarena');
-        });
         country.get(null, mResponse);
         chai.expect(mResponse.statusCode).is.eq(500);
         // chai.expect(res.status).is.equal(200);

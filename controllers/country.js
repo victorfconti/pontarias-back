@@ -1,21 +1,25 @@
-const userModel = require('../models/index').Country;
 const logger = require('../config/logger');
 const sequelize = require('sequelize');
 
-module.exports = {
+module.exports = function(userModel){
 
-    get(req, res){
+    if(userModel == null)
+        this.userModel = require('../models/index').Country;
+    else
+        this.userModel = userModel;
+
+    this.get = function(req, res){
         console.log((userModel));
-        userModel.findAll().then(countries =>{
+        this.userModel.findAll().then(countries =>{
             return res.json(countries)
         }).catch(err=>{
             logger.error(err);
             return res.status(500).json({})
         });
-    },
+    };
 
-    getWithId(req, res){
-        userModel.findByPk(req.params.id).then(country =>{
+    this.getWithId = function(req, res){
+        this.userModel.findByPk(req.params.id).then(country =>{
             if(country == null) {
                 return res.status(404).json({});
             }
@@ -24,20 +28,20 @@ module.exports = {
             logger.error(err);
             return res.status(500).json({})
         });
-    },
+    };
 
-    getWithName(req, res){
+    this.getWithName = function(req, res){
         return this.findOneUser(res,
             {where:{country: sequelize.where(sequelize.fn('LOWER', sequelize.col('country')), req.params.name.toLowerCase())}});
-    },
+    };
 
-    getWithAlpha2(req, res){
+    this.getWithAlpha2 = function(req, res){
         return this.findOneUser(res,
             {where: { alpha2: sequelize.where(sequelize.fn('LOWER', sequelize.col('alpha2')), req.params.alpha2.toLowerCase())}});
-    },
+    };
 
-    findOneUser(res, customJsonQuery){
-        userModel.findOne(customJsonQuery).then(country => {
+    this.findOneUser = function(res, customJsonQuery){
+        this.userModel.findOne(customJsonQuery).then(country => {
             if(country == null){
                 return res.status(404).json({});
             }
