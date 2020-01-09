@@ -54,7 +54,6 @@ describe('Config', function () {
         try {
             model = require('../models/index').sequelize.options;
         }finally {
-            console.log(model);
             chai.expect(model.username).be.equal('pontarias');
             chai.expect(model.dialect).be.equal('sqlite');
             chai.expect(model.database).be.undefined;
@@ -131,7 +130,6 @@ describe('Config', function () {
         try {
             model = require('../models/index').sequelize.config;
         }finally {
-            console.log(model);
             chai.expect(model.host).be.equal('localhost');
             delete process.env['DB_USERNAME'];
             delete process.env['DB_PASSWORD'];
