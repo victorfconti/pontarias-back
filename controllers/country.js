@@ -9,7 +9,7 @@ module.exports = function(injectedUserModel){
         this.userModel = injectedUserModel;
 
     this.get = (req, res)=>{
-        this.userModel.findAll().then(countries =>{
+        return this.userModel.findAll().then(countries =>{
             return res.json(countries)
         }).catch(err=>{
             logger.error(err);
@@ -18,7 +18,7 @@ module.exports = function(injectedUserModel){
     };
 
     this.getWithId = (req, res)=>{
-        this.userModel.findByPk(req.params.id).then(country =>{
+        return this.userModel.findByPk(req.params.id).then(country =>{
             if(country == null) {
                 return res.status(404).json({});
             }
@@ -40,7 +40,7 @@ module.exports = function(injectedUserModel){
     };
 
     let findOneUser = (res, customJsonQuery)=>{
-        this.userModel.findOne(customJsonQuery).then(country => {
+        return this.userModel.findOne(customJsonQuery).then(country => {
             if(country == null){
                 return res.status(404).json({});
             }

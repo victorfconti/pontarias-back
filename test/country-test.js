@@ -1,10 +1,9 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const country = require('../controllers/country');
 const app = require('../app');
-const Country = require('../models/index').Country;
+const CountryModel = require('../models/index').Country;
 const mockResponse = require('./utils').mockResponse;
-const sinon = require('sinon');
+const Country = require('../controllers/country');
 
 chai.use(chaiHttp);
 
@@ -12,7 +11,7 @@ describe('Country', ()=>{
 
     before(()=>{
        if(process.env.NODE_ENV === 'test'){
-            return Country.create({country: 'Afghanistan',alpha2: 'AF', alpha3: 'AFG', un: '004'});
+            return CountryModel.create({country: 'Afghanistan',alpha2: 'AF', alpha3: 'AFG', un: '004'});
         }
     });
 
@@ -23,22 +22,23 @@ describe('Country', ()=>{
         });
     });
 
-    // var Module = require('module');
-    // var originalRequire = Module.prototype.require;
-    // Module.prototype.require = function(){
-    //     //do your thing here
-    //     return originalRequire.apply(this, arguments);
-    // };
-
     it('Get all with error',() =>{
         const mResponse = new mockResponse();
-        country.setUserModel('a');
-        console.log(country.userModel);
-        country.get(null, mResponse);
-        chai.expect(mResponse.statusCode).is.eq(500);
-        // chai.expect(res.status).is.equal(200);
-        country.toCrazyCrap.restore();
+        const country = new Country({
+            findAll: ()=>{
+                return new Promise(((resolve, reject) => reject()));
+            }
+        });
+        country.get(null, mResponse).then(
+            ()=>{
+                chai.expect(mResponse.statusCode).is.eq(500);
+                chai.expect(mResponse.jsonObject).is.empty;
+            }
+        ).catch(()=>{
+            chai.AssertionError;
+        });
     });
+
     it('Get by id',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
             chai.request(app).get('/countries/' + res.body[0].id).end((errInner, resInner)=>{
@@ -57,13 +57,21 @@ describe('Country', ()=>{
         });
     });
     it('Get by id constraint error',() =>{
-        const mockCountry = Object.assign({}, country);
-        console.log(mockCountry.get); //.findAll();
-        // chai.request(app).get('/countries/a').end((err, res)=>{
-        //     chai.expect(err).is.null;
-        //     chai.expect(res.status).is.equal(500);
-        //     chai.expect(res.body).is.empty;
-        // });
+        const mResponse = new mockResponse();
+        const country = new Country({
+            findByPk: ()=>{
+                return new Promise(((resolve, reject) => reject()));
+            }
+        });
+        country.getWithId({params: {id: 1}}, mResponse).then(
+            ()=>{
+                chai.expect(mResponse.statusCode).is.eq(500);
+                chai.expect(mResponse.jsonObject).is.empty;
+            }
+        ).catch(()=>{
+            chai.AssertionError;
+        });
+
     });
     it('Get by country',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
@@ -74,6 +82,23 @@ describe('Country', ()=>{
                 chai.expect(resInner.body.country).is.equal(res.body[0].country);
             });
         });
+    });
+    it('Get by country constraint error',() =>{
+        const mResponse = new mockResponse();
+        const country = new Country({
+            findOne: ()=>{
+                return new Promise(((resolve, reject) => reject()));
+            }
+        });
+        country.getWithName({params: {name: 'a'}}, mResponse).then(
+            ()=>{
+                chai.expect(mResponse.statusCode).is.eq(500);
+                chai.expect(mResponse.jsonObject).is.empty;
+            }
+        ).catch(()=>{
+            chai.AssertionError;
+        });
+
     });
     it('Get by invalid country with error',() =>{
         chai.request(app).get('/countries/name/9999').end((err, res)=>{
@@ -91,6 +116,23 @@ describe('Country', ()=>{
                 chai.expect(resInner.body.alpha2).is.equal(res.body[0].alpha2);
             });
         });
+    });
+    it('Get by alpha2 constraint error',() =>{
+        const mResponse = new mockResponse();
+        const country = new Country({
+            findOne: ()=>{
+                return new Promise(((resolve, reject) => reject()));
+            }
+        });
+        country.getWithAlpha2({params: {alpha2: 'a'}}, mResponse).then(
+            ()=>{
+                chai.expect(mResponse.statusCode).is.eq(500);
+                chai.expect(mResponse.jsonObject).is.empty;
+            }
+        ).catch(()=>{
+            chai.AssertionError;
+        });
+
     });
     it('Get by invalid alpha2 with error',() => {
         chai.request(app).get('/countries/alpha2/999').end((err, res) => {
