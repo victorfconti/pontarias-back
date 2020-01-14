@@ -31,7 +31,7 @@ module.exports = function(injectedUserModel){
 
     this.getWithName = (req, res)=>{
         return findOneUser(res,
-            {where:{country: sequelize.where(sequelize.fn('LOWER', sequelize.col('country')), req.params.name.toLowerCase())}});
+            {where:{name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), req.params.name.toLowerCase())}});
     };
 
     this.getWithAlpha2 = (req, res)=>{
