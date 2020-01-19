@@ -1,14 +1,19 @@
 const logger = require('../config/logger');
 const sequelize = require('sequelize');
+const AbstractController = require('./abstract_controller');
 
-module.exports = function(injectedUserModel){
 
-    if(injectedUserModel == null)
-        this.userModel = require('../models/index').Country;
-    else
-        this.userModel = injectedUserModel;
+module.exports = class extends AbstractController{
 
-    this.get = (req, res)=>{
+    constructor(injectedCountryModel) {
+        super();
+        if(injectedCountryModel == null)
+            this.userModel = require('../models/index').Country;
+        else
+            this.userModel = injectedCountryModel;
+    }
+
+    get = (req, res)=>{
         return this.userModel.findAll().then(countries =>{
             return res.json(countries)
         }).catch(err=>{
@@ -17,7 +22,7 @@ module.exports = function(injectedUserModel){
         });
     };
 
-    this.getWithId = (req, res)=>{
+    getWithId = (req, res)=>{
         return this.userModel.findByPk(req.params.id).then(country =>{
             if(country == null) {
                 return res.status(404).json({});
@@ -29,17 +34,17 @@ module.exports = function(injectedUserModel){
         });
     };
 
-    this.getWithName = (req, res)=>{
-        return findOneUser(res,
+    getWithName = (req, res)=>{
+        return this.findOneUser(res,
             {where:{name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), req.params.name.toLowerCase())}});
     };
 
-    this.getWithAlpha2 = (req, res)=>{
-        return findOneUser(res,
+    getWithAlpha2 = (req, res)=>{
+        return this.findOneUser(res,
             {where: { alpha2: sequelize.where(sequelize.fn('LOWER', sequelize.col('alpha2')), req.params.alpha2.toLowerCase())}});
     };
 
-    let findOneUser = (res, customJsonQuery)=>{
+    findOneUser = (res, customJsonQuery)=>{
         return this.userModel.findOne(customJsonQuery).then(country => {
             if(country == null){
                 return res.status(404).json({});
