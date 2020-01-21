@@ -35,24 +35,13 @@ module.exports = class extends AbstractController{
     };
 
     getWithName = (req, res)=>{
-        return this.findOneUser(res,
+        return this.findOneUser(res, this.userModel,
             {where:{name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), req.params.name.toLowerCase())}});
     };
 
     getWithAlpha2 = (req, res)=>{
-        return this.findOneUser(res,
+        return this.findOneUser(res, this.userModel,
             {where: { alpha2: sequelize.where(sequelize.fn('LOWER', sequelize.col('alpha2')), req.params.alpha2.toLowerCase())}});
     };
 
-    findOneUser = (res, customJsonQuery)=>{
-        return this.userModel.findOne(customJsonQuery).then(country => {
-            if(country == null){
-                return res.status(404).json({});
-            }
-            return res.json(country);
-        }).catch(err=>{
-            logger.error(err);
-            return res.status(500).json({})
-        });
-    }
 };
