@@ -2,7 +2,7 @@ const logger = require('../config/logger');
 
 module.exports = class AbstractController{
 
-    findOneUser (res, model, customJsonQuery){
+    findOne (res, model, customJsonQuery){
         return model.findOne(customJsonQuery).then(response => {
             if(response == null){
                 return res.status(404).json({});

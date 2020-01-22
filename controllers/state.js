@@ -1,7 +1,7 @@
 const AbstractController = require('./abstract_controller');
 const sequelize = require('sequelize');
 
-StateController = class extends AbstractController{
+const StateController = class extends AbstractController{
 
     constructor(injectedStateModel) {
         super();
@@ -12,15 +12,17 @@ StateController = class extends AbstractController{
     }
 
     getByCountry = (req, res)=>{
-        return findOneUser(res, {})
+        return this.findOne(res, this.stateModel, {where: {CountryId: req.params.country}});
     };
 
     getByName = (req, res)=>{
-        return res.json('Hey macarena');
+        return this.findOne(res, this.stateModel,
+            {where:{name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), req.params.name.toLowerCase())}});
     };
 
     getByAbbreviation = (req, res)=>{
-        return res.json(res.json('Hey Macarena'));
+        return this.findOne(res, this.stateModel,
+            {where:{abbreviation: sequelize.where(sequelize.fn('LOWER', sequelize.col('abbreviation')), req.params.abbreviation.toLowerCase())}});
     };
 };
 module.exports = StateController;
