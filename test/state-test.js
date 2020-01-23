@@ -28,24 +28,24 @@ describe('State', ()=>{
             });
         });
     });
-    //
-    // it('Get all with error',() =>{
-    //     const mResponse = new mockResponse();
-    //     const country = new Country({
-    //         findAll: ()=>{
-    //             return new Promise(((resolve, reject) => reject()));
-    //         }
-    //     });
-    //     country.get(null, mResponse).then(
-    //         ()=>{
-    //             chai.expect(mResponse.statusCode).is.eq(500);
-    //             chai.expect(mResponse.jsonObject).is.empty;
-    //         }
-    //     ).catch(()=>{
-    //         chai.AssertionError;
-    //     });
-    // });
-    //
+
+    it('Get all with error',() =>{
+        const mResponse = new mockResponse();
+        const country = new State({
+            findOne: ()=>{
+                return new Promise(((resolve, reject) => reject()));
+            }
+        });
+        country.getByName({params: {name: 'a'}}, mResponse).then(
+            ()=>{
+                chai.expect(mResponse.statusCode).is.eq(500);
+                chai.expect(mResponse.jsonObject).is.empty;
+            }
+        ).catch(()=>{
+            chai.AssertionError;
+        });
+    });
+
     // it('Get by id',() =>{
     //     chai.request(app).get('/countries').end((err, res)=>{
     //         chai.request(app).get('/countries/' + res.body[0].id).end((errInner, resInner)=>{
