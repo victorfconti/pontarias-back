@@ -76,7 +76,6 @@ describe('Country', ()=>{
     it('Get by country',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
             chai.request(app).get('/countries/name/' + res.body[0].name).end((errInner, resInner)=>{
-                console.log(resInner);
                 chai.expect(err).is.null;
                 chai.expect(errInner).is.null;
                 chai.expect(resInner.status).is.equal(200);
