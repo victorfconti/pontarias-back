@@ -11,16 +11,16 @@ const StateController = class extends AbstractController{
             this.stateModel = injectedStateModel;
     }
 
-    getByCountry = (req, res)=>{
+    getByCountry(req, res){
         return this.findOne(res, this.stateModel, {where: {CountryId: req.params.country}});
-    };
+    }
 
-    getByName = (req, res)=>{
+    getByName(req, res){
         return this.findOne(res, this.stateModel,
             {where:{name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), req.params.name.toLowerCase())}});
-    };
+    }
 
-    getByAbbreviation = (req, res)=>{
+    getByAbbreviation(req, res){
         return this.findOne(res, this.stateModel,
             {where:{abbreviation: sequelize.where(sequelize.fn('LOWER', sequelize.col('abbreviation')), req.params.abbreviation.toLowerCase())}});
     };
