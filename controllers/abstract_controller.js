@@ -12,6 +12,6 @@ module.exports = class AbstractController{
             logger.error(err);
             return res.status(500).json({})
         });
-    };
+    }
 
 };

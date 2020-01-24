@@ -23,6 +23,6 @@ const StateController = class extends AbstractController{
     getByAbbreviation(req, res){
         return this.findOne(res, this.stateModel,
             {where:{abbreviation: sequelize.where(sequelize.fn('LOWER', sequelize.col('abbreviation')), req.params.abbreviation.toLowerCase())}});
-    };
+    }
 };
 module.exports = StateController;
