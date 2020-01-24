@@ -4,7 +4,8 @@ const models = require('./models/index');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const countryRouter= require('./routes/country');
+const countryRouter = require('./routes/country');
+const stateRouter = require('./routes/state');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/countries', countryRouter);
+app.use('/states', stateRouter);
 
 module.exports = app;
 

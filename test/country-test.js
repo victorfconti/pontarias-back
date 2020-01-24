@@ -11,7 +11,7 @@ describe('Country', ()=>{
 
     before(()=>{
        if(process.env.NODE_ENV === 'test'){
-            return CountryModel.create({country: 'Afghanistan',alpha2: 'AF', alpha3: 'AFG', un: '004'});
+            return CountryModel.create({name: 'Afghanistan',alpha2: 'AF', alpha3: 'AFG', un: '004'});
         }
     });
 
@@ -75,11 +75,11 @@ describe('Country', ()=>{
     });
     it('Get by country',() =>{
         chai.request(app).get('/countries').end((err, res)=>{
-            chai.request(app).get('/countries/name/' + res.body[0].country).end((errInner, resInner)=>{
+            chai.request(app).get('/countries/name/' + res.body[0].name).end((errInner, resInner)=>{
                 chai.expect(err).is.null;
                 chai.expect(errInner).is.null;
                 chai.expect(resInner.status).is.equal(200);
-                chai.expect(resInner.body.country).is.equal(res.body[0].country);
+                chai.expect(resInner.body.name).is.equal(res.body[0].name);
             });
         });
     });

@@ -29,8 +29,13 @@ if(process.env.DB_USERNAME && process.env.DB_PASSWORD){
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
-db.User = sequelize.import(__dirname + '/user.js');
 db.Country = sequelize.import(__dirname + '/country.js');
+db.State = sequelize.import(__dirname + '/state.js');
+db.User = sequelize.import(__dirname + '/user.js');
+
+// Add dependencies
+db.Country.hasMany(db.State);
+db.State.belongsTo(db.Country);
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
