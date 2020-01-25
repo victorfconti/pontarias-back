@@ -32,10 +32,13 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 db.Country = sequelize.import(__dirname + '/country.js');
 db.State = sequelize.import(__dirname + '/state.js');
 db.User = sequelize.import(__dirname + '/user.js');
+db.Address = sequelize.import(__dirname + '/address.js');
 
 // Add dependencies
 db.Country.hasMany(db.State);
 db.State.belongsTo(db.Country);
+db.Address.hasOne(db.State);
+db.State.belongsTo(db.Address);
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

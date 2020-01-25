@@ -8,5 +8,5 @@ module.exports = (sequelize, datatype)=>{
         zip_code: {type: datatype.STRING, allowNull: false, trim: true},
         observation: {type: datatype.STRING, allowNull: false, trim: true},
         coordinates: {type: datatype.STRING, allowNull: true, trim: true}
-    });
+    }, {indexes: [{unique: false, fields: ['street']}]});
 };
