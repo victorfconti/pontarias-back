@@ -1,10 +1,25 @@
 const AbstractController = require('./abstract_controller');
+const address = require('../models/index').Address;
+const logger = require('../config/logger');
+const sequelize = require('sequelize');
 
 module.exports = class extends AbstractController{
-    findByName(req, res){
-        return res.json('Hey Macarena');
+    findById(req, res){
+        return address.findByPk(req.params.id).then(adr => {
+            if(!adr)
+                return res.status(404).json({});
+            return res.json(adr);
+        }).catch(error => {
+            logger.error(error);
+            res.status(500).json({});
+        });
+    }
+    findByUser(req, res){
+        return super.findOne(res, address,
+            {where:{name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), req.params.name.toLowerCase())}});
     }
     findByStreet(req, res){
-        return res.json('Baila tu corpo');
+        return super.findOne(res, address,
+            {where:{street: { [sequelize.Op.iLike]: '%' + req.params.street.toLowerCase() + '%'}}});
     }
 };

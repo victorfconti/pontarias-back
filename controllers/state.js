@@ -1,5 +1,6 @@
 const AbstractController = require('./abstract_controller');
 const sequelize = require('sequelize');
+const logger = require('../config/logger');
 
 const StateController = class extends AbstractController{
 
@@ -9,6 +10,17 @@ const StateController = class extends AbstractController{
             this.stateModel = require('../models/index').State;
         else
             this.stateModel = injectedStateModel;
+    }
+
+    getById(req, res){
+        return this.stateModel.findByPk(req.params.id).then(state=>{
+            if(!state)
+                return res.status(404).json({});
+            return res.json(state);
+        }).catch(error => {
+            logger.error(error);
+            return res.status(500).json({});
+        });
     }
 
     getByCountry(req, res){

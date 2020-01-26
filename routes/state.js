@@ -3,6 +3,10 @@ const router = express.Router();
 const StateController = require('../controllers/state');
 const stateController = new StateController();
 
+router.get('/:id', (req, res)=>{
+    stateController.getById(req, res);
+});
+
 router.get('/country/:country', (req, res)=>{
     stateController.getByCountry(req, res);
 });
