@@ -1,9 +1,17 @@
 const AbstractController = require('./abstract_controller');
-const address = require('../models/index').Address;
 const logger = require('../config/logger');
 const sequelize = require('sequelize');
 
 module.exports = class extends AbstractController{
+
+    constructor(injectAddress) {
+        super();
+        if(!injectAddress)
+            this.address = require('../models/index').Address;
+        else
+            this.address = injectAddress;
+    }
+
     findById(req, res){
         return address.findByPk(req.params.id).then(adr => {
             if(!adr)

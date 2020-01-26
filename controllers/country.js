@@ -7,7 +7,7 @@ module.exports = class extends AbstractController{
 
     constructor(injectedCountryModel) {
         super();
-        if(injectedCountryModel == null)
+        if(!injectedCountryModel)
             this.userModel = require('../models/index').Country;
         else
             this.userModel = injectedCountryModel;
