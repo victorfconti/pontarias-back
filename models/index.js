@@ -39,8 +39,8 @@ db.Country.hasMany(db.State);
 db.State.belongsTo(db.Country);
 db.Address.belongsTo(db.State);
 db.State.hasOne(db.Address);
-db.Address.hasOne(db.User);
-db.User.belongsTo(db.Address);
+db.Address.belongsTo(db.User);
+db.User.hasOne(db.Address);
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
