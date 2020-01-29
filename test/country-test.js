@@ -1,9 +1,9 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../app');
-const CountryModel = require('../models/index').Country;
+const CountryModel = require('../src/models/index').Country;
 const mockResponse = require('./utils').mockResponse;
-const Country = require('../controllers/country');
+const Country = require('../src/controllers/country');
 
 chai.use(chaiHttp);
 

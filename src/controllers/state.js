@@ -7,7 +7,7 @@ const StateController = class extends AbstractController{
     constructor(injectedStateModel) {
         super();
         if(!injectedStateModel)
-            this.stateModel = require('../models/index').State;
+            this.stateModel = require('../models').State;
         else
             this.stateModel = injectedStateModel;
     }

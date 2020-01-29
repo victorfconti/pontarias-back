@@ -7,7 +7,7 @@ module.exports = class extends AbstractController{
     constructor(injectAddress) {
         super();
         if(!injectAddress)
-            this.address = require('../models/index').Address;
+            this.address = require('../models').Address;
         else
             this.address = injectAddress;
     }

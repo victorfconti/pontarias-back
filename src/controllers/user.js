@@ -1,4 +1,4 @@
-const user = require('../models/index').User;
+const user = require('../models').User;
 const { validationResult } = require('express-validator');
 const logger = require('../config/logger');
 
