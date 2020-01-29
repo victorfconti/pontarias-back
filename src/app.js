@@ -1,12 +1,12 @@
 const express = require('express');
 const path = require('path');
-const models = require('./src/models/index');
+const models = require('./models');
 
-const indexRouter = require('./src/routes/index');
-const usersRouter = require('./src/routes/users');
-const countryRouter = require('./src/routes/country');
-const stateRouter = require('./src/routes/state');
-const addressRouter = require('./src/routes/address');
+const indexRouter = require('./routes');
+const usersRouter = require('./routes/users');
+const countryRouter = require('./routes/country');
+const stateRouter = require('./routes/state');
+const addressRouter = require('./routes/address');
 
 const app = express();
 

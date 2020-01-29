@@ -6,7 +6,7 @@
     "develop": "./node_modules/nodemon/bin/nodemon.js ./bin/www",
     "start": "node ./bin/www",
     "test": "NODE_ENV=test ./node_modules/nyc/bin/nyc.js --reporter=lcov --report-dir=.nyc_coverage ./node_modules/mocha/bin/mocha",
-    "deploy": "cp -r bin config src/controllers models public routes test app.js package.json ./docker/src"
+    "deploy": "cp -r bin config src/controllers models public routes test src/app.js package.json ./docker/src"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
