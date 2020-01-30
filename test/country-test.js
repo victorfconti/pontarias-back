@@ -136,6 +136,7 @@ describe('Country', ()=>{
     });
     it('Get by invalid alpha2 with error',() => {
         chai.request(app).get('/countries/alpha2/999').end((err, res) => {
+            console.log(res);
             chai.expect(err).is.null;
             chai.expect(res.status).is.equal(404);
             chai.expect(res.body).is.empty;

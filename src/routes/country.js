@@ -3,20 +3,9 @@ const router = express.Router();
 const CountryController = require('../controllers/country');
 const countryController = new CountryController();
 
-router.get('/', (req, res)=>{
-    countryController.get(req, res);
-});
-
-router.get('/:id', ((req, res) => {
-    countryController.getWithId(req, res);
-}));
-
-router.get('/name/:name', (req, res) => {
-    countryController.getWithName(req, res);
-});
-
-router.get('/alpha2/:alpha2', ((req, res) => {
-    countryController.getWithAlpha2(req, res);
-}));
+router.get('/', countryController.get);
+router.get('/:id', countryController.getWithId);
+router.get('/name/:name', countryController.getWithName);
+router.get('/alpha2/:alpha2', countryController.getWithAlpha2);
 
 module.exports = router;

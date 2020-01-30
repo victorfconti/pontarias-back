@@ -12,7 +12,7 @@ module.exports = class extends AbstractController{
             this.address = injectAddress;
     }
 
-    findById(req, res){
+    findById = (req, res)=>{
         return address.findByPk(req.params.id).then(adr => {
             if(!adr)
                 return res.status(404).json({});
@@ -21,12 +21,12 @@ module.exports = class extends AbstractController{
             logger.error(error);
             res.status(500).json({});
         });
-    }
-    findByUser(req, res){
+    };
+    findByUser = (req, res)=>{
         return super.findOne(res, address,
             {where:{UserId: req.params.UserId}});
-    }
-    findByStreet(req, res){
+    };
+    findByStreet = (req, res)=>{
         return super.findOne(res, address,
             {where:{street: { [sequelize.Op.iLike]: '%' + req.params.street.toLowerCase() + '%'}}});
     }

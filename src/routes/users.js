@@ -13,8 +13,6 @@ router.post('/', [
   check('age').exists().isNumeric(),
   check('active').not().exists(),
   check('id').not().exists()
-], (req, res) => {
-  userController.save(req, res);
-});
+], userController.save);
 
 module.exports = router;
