@@ -19,6 +19,42 @@ describe('State', ()=>{
         }
     });
 
+    it ('Get by Id',() =>{
+        StateModel.findOne({where: {name: 'Pernambuco'}}).then(c=>{
+            const stateId = c['id'];
+            chai.request(app).get('/states/'+stateId).end((err, res)=>{
+                chai.expect(err).is.null;
+                chai.expect(res.body).is.not.empty;
+                chai.expect(res.status).is.equal(200);
+            });
+        });
+    });
+
+    it ('Id not found',() =>{
+        chai.request(app).get('/states/'+999).end((err, res)=>{
+            chai.expect(err).is.null;
+            chai.expect(res.body).is.empty;
+            chai.expect(res.status).is.equal(404);
+        });
+    });
+
+    it ('Id error',() =>{
+        const mResponse = new mockResponse();
+        const state = new State({
+            findByPk: ()=>{
+                return new Promise(((resolve, reject) => reject()));
+            }
+        });
+        state.getById({params: {name: 'a'}}, mResponse).then(
+            ()=>{
+                chai.expect(mResponse.statusCode).is.eq(500);
+                chai.expect(mResponse.jsonObject).is.empty;
+            }
+        ).catch(()=>{
+            chai.AssertionError;
+        });
+    });
+
     it ('Get by country',() =>{
         CountryModel.findOne({where: {name: 'Brazil'}}).then(c=>{
             const countryId = c['id'];
@@ -45,9 +81,9 @@ describe('State', ()=>{
             chai.AssertionError;
         });
     });
+
     it('Get by name',() =>{
         chai.request(app).get('/states/name/Pernambuco').end((err, res)=>{
-            console.log(res);
             chai.expect(res.status).is.equal(200);
             chai.expect(res.body.name).is.equal('Pernambuco');
         });

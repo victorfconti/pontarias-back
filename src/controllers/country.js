@@ -15,8 +15,6 @@ module.exports = class extends AbstractController{
 
     get(req, res){
         return this.userModel.findAll().then(countries =>{
-            if(!countries)
-                return res.status(404).json({});
             return res.json(countries)
         }).catch(err=>{
             logger.error(err);
