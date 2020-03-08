@@ -11,7 +11,7 @@ function setEnvironmentVariableAndGeneratedTestCache(fileCache){
     delete require.cache[require.resolve(fileCache)];
 }
 
-describe('Config', function () {
+describe('1-Config', function () {
     it('No develop variable', function () {
         cleanEnvironmentVariableAndConfCache('../src/config/logger');
         const logger = require('../src/config/logger');
