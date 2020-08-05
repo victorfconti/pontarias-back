@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "develop": "./node_modules/nodemon/bin/nodemon.js ./bin/www",
-    "start": "node ./bin/www",
+    "develop": "nodemon ./bin/www",
+    "start": "ts-node ./bin/www",
     "test": "NODE_ENV=test ./node_modules/nyc/bin/nyc.js --reporter=lcov --report-dir=.nyc_coverage ./node_modules/mocha/bin/mocha",
-    "deploy": "cp -r bin config controllers models public routes test app.js package.json ./docker/src"
+    "deploy": "cp -r bin config controllers models public routes test app.ts package.json ./docker/src"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -31,6 +31,9 @@
     "eslint": "^7.6.0",
     "mocha": "^8.1.1",
     "nyc": "^15.0.0",
-    "sinon": "^9.0.2"
+    "sinon": "^9.0.2",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.3",
+    "typescript": "^3.9.7"
   }
 }

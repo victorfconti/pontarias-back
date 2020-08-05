@@ -1,25 +1,18 @@
-const express = require('express');
-const path = require('path');
-const models = require('./models/index');
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const countryRouter = require('./routes/country');
-const stateRouter = require('./routes/state');
-
-const app = express();
-
+"use strict";
+var express = require('express');
+var path = require('path');
+var models = require('./models/index');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var countryRouter = require('./routes/country');
+var stateRouter = require('./routes/state');
+var app = express();
 app.models = models;
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/countries', countryRouter);
 app.use('/states', stateRouter);
-
 module.exports = app;
-
-
