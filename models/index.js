@@ -29,9 +29,9 @@ if(process.env.DB_USERNAME && process.env.DB_PASSWORD){
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
 
-db.Country = sequelize.import(__dirname + '/country.js');
-db.State = sequelize.import(__dirname + '/state.js');
-db.User = sequelize.import(__dirname + '/user.js');
+db.Country = require(__dirname + '/country.js')(sequelize, Sequelize.DataTypes);
+db.State = require(__dirname + '/state.js')(sequelize, Sequelize.DataTypes);
+db.User = require(__dirname + '/user.js')(sequelize, Sequelize.DataTypes);
 
 // Add dependencies
 db.Country.hasMany(db.State);
@@ -46,6 +46,6 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-sequelize.sync().then(()=>{logger.info('Created database tables')});
+sequelize.sync().then(()=>{logger.info('Created database tables')}).catch(e=>console.error('Error on connect', e));
 
 module.exports = db;
