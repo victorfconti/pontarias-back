@@ -8,12 +8,14 @@
     "cobertura",
     "html",
     "text",
-    "text-summary"
+    "text-summary",
+    "lcov"
   ],
   "temp-directory": "./coverage/.nyc_output",
   "exclude": [
     "coverage/**",
     "node_modules/**",
+    "test/**",
     "**/*.d.ts",
     "**/*.test.ts"
   ]
