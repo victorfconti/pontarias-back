@@ -1,22 +1,26 @@
 {
-  "cache": true,
+  "cache": false,
+  "check-coverage": false,
   "extension": [
     ".ts"
   ],
-  "report-dir": "./coverage",
-  "reporter": [
-    "cobertura",
-    "html",
-    "text",
-    "text-summary",
-    "lcov"
+  "include": [
+    "**/*.js",
+    "**/*.ts"
   ],
-  "temp-directory": "./coverage/.nyc_output",
   "exclude": [
     "coverage/**",
     "node_modules/**",
-    "test/**",
-    "**/*.d.ts",
-    "**/*.test.ts"
-  ]
+    "test/**/*.js",
+    "test/**/*.ts",
+    ".nyc_coverage/**"
+  ],
+  "sourceMap": true,
+  "reporter": [
+    "html",
+    "text",
+    "text-summary"
+  ],
+  "all": true,
+  "instrument": true
 }
