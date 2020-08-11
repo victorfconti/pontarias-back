@@ -1,12 +1,12 @@
-const chai = require('chai');
-const fs = require('fs');
+import chai = require('chai');
+import fs from 'fs';
 
-function cleanEnvironmentVariableAndConfCache(fileCache){
+function cleanEnvironmentVariableAndConfCache(fileCache: string){
     delete process.env['NODE_ENV'];
     delete require.cache[require.resolve(fileCache)];
 }
 
-function setEnvironmentVariableAndGeneratedTestCache(fileCache){
+function setEnvironmentVariableAndGeneratedTestCache(fileCache: string){
     process.env['NODE_ENV'] = 'test';
     delete require.cache[require.resolve(fileCache)];
 }
@@ -88,7 +88,7 @@ describe('Config', function () {
         process.env['DB_USERNAME'] = 'pontarias';
         process.env['DB_PASSWORD'] = '123';
         process.env['DB_DIALECT'] = 'sqlite';
-        process.env['DB_LOGGING'] = false;
+        process.env['DB_LOGGING'] = String(false);
         try {
             model = require('../models/index').sequelize.options;
         }finally {
@@ -107,7 +107,7 @@ describe('Config', function () {
         process.env['DB_USERNAME'] = 'pontarias';
         process.env['DB_PASSWORD'] = '123';
         process.env['DB_DIALECT'] = 'sqlite';
-        process.env['DB_PORT'] = 5432;
+        process.env['DB_PORT'] = String(5432);
         try {
             model = require('../models/index').sequelize.options;
         }finally {

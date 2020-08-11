@@ -1,8 +1,8 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const app = require('../app');
+import chai from 'chai';
+import chaiHttp = require('chai-http');
+import app from '../app';
 const CountryModel = require('../models/index').Country;
-const mockResponse = require('./utils').mockResponse;
+const MockResponse = require('./utils').MockResponse;
 const Country = require('../controllers/country');
 
 chai.use(chaiHttp);
@@ -23,7 +23,7 @@ describe('Country', ()=>{
     });
 
     it('Get all with error',() =>{
-        const mResponse = new mockResponse();
+        const mResponse = new MockResponse();
         const country = new Country({
             findAll: ()=>{
                 return new Promise(((resolve, reject) => reject()));
@@ -57,7 +57,7 @@ describe('Country', ()=>{
         });
     });
     it('Get by id constraint error',() =>{
-        const mResponse = new mockResponse();
+        const mResponse = new MockResponse();
         const country = new Country({
             findByPk: ()=>{
                 return new Promise(((resolve, reject) => reject()));
@@ -84,7 +84,7 @@ describe('Country', ()=>{
         });
     });
     it('Get by country constraint error',() =>{
-        const mResponse = new mockResponse();
+        const mResponse = new MockResponse();
         const country = new Country({
             findOne: ()=>{
                 return new Promise(((resolve, reject) => reject()));
@@ -118,7 +118,7 @@ describe('Country', ()=>{
         });
     });
     it('Get by alpha2 constraint error',() =>{
-        const mResponse = new mockResponse();
+        const mResponse = new MockResponse();
         const country = new Country({
             findOne: ()=>{
                 return new Promise(((resolve, reject) => reject()));

@@ -1,6 +1,6 @@
-const chai = require('chai');
-const chaiHttp = require('chai-http');
-const app = require('../app');
+import chai from 'chai';
+import chaiHttp = require('chai-http');
+import app from '../app';
 
 chai.use(chaiHttp);
 

@@ -20,6 +20,6 @@ app.use('/users', usersRouter);
 app.use('/countries', countryRouter);
 app.use('/states', stateRouter);
 
-module.exports = app;
+export default app;
 
 

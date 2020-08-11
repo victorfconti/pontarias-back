@@ -1,4 +1,4 @@
-export function mockResponse(this: any) {
+export function MockResponse(this: any) {
 
     this.status = function(statusCode: number){
         this.statusCode = statusCode;
